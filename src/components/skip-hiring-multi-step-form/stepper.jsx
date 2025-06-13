@@ -7,15 +7,18 @@ export default function Stepper({ currentStep }) {
   // Detect screen size to toggle mobile view
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize(); // Run on mount
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Mobile-only style fix: hardware acceleration triggers flicker fix on Android
+  const mobileFixStyle = isMobile ? { transform: 'translateZ(0)', willChange: 'transform' } : {};
+
   return (
     <div
       className="flex justify-center px-4 py-6 bg-white dark:bg-black shadow-md rounded-xl w-full min-h-[80px]"
-      style={{ backgroundColor: 'inherit' }}
+      style={mobileFixStyle}
     >
       <div className="flex items-center w-full max-w-7xl overflow-x-auto md:overflow-visible">
         <div className="flex items-center w-full md:justify-between">
@@ -51,7 +54,6 @@ export default function Stepper({ currentStep }) {
                   </span>
                 </div>
 
-                {/* Connecting Line */}
                 {!isLast && (
                   <div className="flex items-center justify-center flex-1 px-2">
                     <div
