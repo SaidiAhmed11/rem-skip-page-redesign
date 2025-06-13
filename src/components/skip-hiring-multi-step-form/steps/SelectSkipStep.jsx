@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSkips, selectSkip, unselectSkip } from '../../../redux/slices/SkipSlice';
-import { Loader2 } from 'lucide-react';
+import { Info, Loader2 } from 'lucide-react';
 import StickySkipBar from '../StickySkipBar';
+import SkipInfoModal from '../SkipInfoModal';
 
 const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
   const dispatch = useDispatch();
   const { skips, loading, selectedSkip, error } = useSelector((state) => state.skips);
+  const [selectedSkipSize, setSelectedSkipSize] = useState(null);
+  const [selectedSkipInfo, setSelectedSkipInfo] = useState(null);
 
   // 📡 Fetch skips on mount
   useEffect(() => {
@@ -32,7 +35,7 @@ const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
   return (
     <section className="px-4 mb-40 py-8 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       {/* Step Title */}
-      <div className="mb-8 text-center">
+      <div className="mb-8 -mt-5 text-center">
         <h2 className="text-3xl font-bold text-gray-100">Choose Your Skip Size</h2>
         <p className="text-gray-400 mt-2">Select the skip size that best suits your needs</p>
       </div>
@@ -85,23 +88,16 @@ const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
               {/* Dark overlay when disabled */}
               {isDisabled && <div className="absolute inset-0 z-20 bg-black/30" />}
 
-              {/* Wishlist Button */}
-              <button className="absolute end-3 top-3 z-10 rounded-full bg-white p-1.5 text-gray-900 shadow hover:text-gray-700">
-                <span className="sr-only">Wishlist</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                  />
-                </svg>
+              {/* Info Button */}
+              <button
+                onClick={() => {
+                  setSelectedSkipSize(skip.size);
+                  setSelectedSkipInfo(skip);
+                }}
+                className="absolute end-3 top-3 z-10 rounded-full bg-white p-1.5 text-gray-900 shadow hover:text-gray-700"
+              >
+                <span className="sr-only">Skip Info</span>
+                <Info className="w-4 h-4" />
               </button>
 
               {/* Skip Image */}
@@ -199,8 +195,18 @@ const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
           );
         })}
       </div>
+      {/*show / hide sticky stepper bar */}
       {selectedSkip !== null && (
         <StickySkipBar skip={selectedSkip} onBack={() => dispatch(unselectSkip(selectedSkip))} />
+      )}
+      {/*show / hide skip info modal */}
+
+      {selectedSkipSize && (
+        <SkipInfoModal
+          size={selectedSkipSize}
+          skip={selectedSkipInfo}
+          onClose={() => setSelectedSkipSize(null)}
+        />
       )}
     </section>
   );
