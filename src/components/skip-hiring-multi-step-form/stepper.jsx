@@ -17,7 +17,7 @@ export default function Stepper({ currentStep }) {
 
   return (
     <div
-      className="flex justify-center px-4 py-6 bg-white dark:bg-black shadow-md rounded-xl w-full min-h-[80px]"
+      className="flex justify-center px-4 py-6 bg-white dark:bg-black/70 shadow-md rounded-xl w-full min-h-[80px]"
       style={mobileFixStyle}
     >
       <div className="flex items-center w-full max-w-7xl overflow-x-auto md:overflow-visible">
