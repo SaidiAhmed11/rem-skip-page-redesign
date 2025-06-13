@@ -7,7 +7,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white dark:bg-[#121212]">
+      <header
+        className="bg-white dark:bg-[#121212] min-h-[64px]"
+        style={{ backgroundColor: 'inherit' }}
+      >
         <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
           <a href="#" className="block">
             <span className="sr-only">Home</span>

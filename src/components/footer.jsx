@@ -3,7 +3,10 @@ import remWasteLogo from '../assets/images/remWasteLogo.png';
 
 const Footer = () => {
   return (
-    <footer className="mt-16 bg-white px-4 pb-6 pt-10 text-gray-600 sm:px-8 lg:px-16 dark:bg-[#1a1a1a] dark:text-gray-300">
+    <footer
+      className="mt-16 bg-white px-4 pb-6 pt-10 text-gray-600 sm:px-8 lg:px-16 dark:bg-[#1a1a1a] dark:text-gray-300 min-h-[120px] md:min-h-[150px]"
+      style={{ backgroundColor: 'inherit' }}
+    >
       <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-10 md:grid-cols-4">
         {/* Logo & Description */}
         <div>
@@ -22,7 +25,6 @@ const Footer = () => {
                 About Us
               </a>
             </li>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <li>
               <a href="#" className="hover:text-[#ff8a00]">
                 Services
