@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+# REM Waste Skip Selection Page — React Redesign
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🎯 Project Overview
 
-## Available Scripts
+This project is a complete redesign and implementation of the "Choose your skip size" page from REM Waste. The aim was to provide a more modern, responsive, and user-friendly experience by integrating advanced UI/UX techniques, clean state management with Redux, and a cohesive visual theme inspired directly by REM Waste’s brand identity.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🎨 Design & Visual Approach
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+I started by analyzing the REM Waste brand and noticed their main color palette included:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Orange**: `#ff8a00`  
+- **Yellow**: `#fde047`  
+- **Creamy White**: `#fff7ed`  
+- **Light Gray**: `#f2f2f2`  
+- **Dark Shades**: `#202022`, `#1d1d1f`, `#2b2b2d`, `#111827`
 
-### `npm test`
+Using these, I created a balanced UI that blends dark mode aesthetics with bright accent colors. Here's a breakdown of visual upgrades:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Custom header and footer featuring REM Waste logo  
+- Updated favicon with the company logo  
+- Added a background image of a real skip for visual realism  
+- Used hover effects like zoom on skip images, glowing orange buttons, and highlighted selections  
+- Created reusable badges for skip restrictions (e.g. not allowed on road or heavy waste not allowed)  
+- Card highlights with orange border and background when selected  
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧠 Functional Features & Logic
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ✅ Built a Stepper Form
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Created a multi-step form with a modern design  
+- Only the "Select Skip" step is active (Step 2) as per the challenge requirements  
 
-### `npm run eject`
+### 📦 Skip Cards Redesign
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Dynamic layout with skip image, name, size, price, and measurement badges  
+- Hovering zoom effect + orange buttons animate to simulate waste throwing  
+- Selection is visually emphasized using color, borders, and background  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ♻️ Redux Toolkit Integration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Used `@reduxjs/toolkit` with `createAsyncThunk` to fetch skip data based on user location (e.g. postcode and area)  
+- Centralized state management (selected skip, form steps, fetched skips)  
+- Redux slice also integrates `localStorage` to persist skip selection across reloads  
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 📚 Modal Skip Info
 
-## Learn More
+- Replaced original top-right badge with an Info button on each card  
+- Clicking it opens a modal with:  
+  - Description  
+  - Image  
+  - Full measurements table  
+  - Select/Unselect ability (if skip is allowed)  
+- If skip is disabled (not allowed on road + no heavy waste), card is dimmed and info modal is not clickable  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🧾 All Skips Info Modal
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- A sticky "Skips Info" button in the header opens a global modal with info for all skip types  
+- Scroll-locked page (background doesn’t scroll when modal is open)  
+- Click outside to close modal + a large orange "Close" button inside  
+- All content is keyboard- and screen-reader-friendly  
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🧩 Technologies & Packages Used
 
-### Analyzing the Bundle Size
+### ⚛️ Frontend Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- React 18  
+- Tailwind CSS 3 — for fast and responsive styling  
+- Redux Toolkit — async state with `createAsyncThunk`  
+- Lucide React — modern SVG icons  
+- Axios — API requests  
+- React Redux — store access  
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 📦 Dev Tools
 
-### Advanced Configuration
+```json
+"devDependencies": {
+  "eslint": "^9.28.0",
+  "eslint-plugin-react": "^7.37.5",
+  "eslint-plugin-react-hooks": "^5.2.0",
+  "eslint-plugin-jsx-a11y": "^6.10.2",
+  "eslint-config-prettier": "^10.1.5",
+  "eslint-plugin-tailwindcss": "^3.18.0",
+  "prettier": "^3.5.3",
+  "tailwindcss": "^3.3.2",
+  "postcss": "^8.4.21",
+  "autoprefixer": "^10.4.14"
+}
+```
+---
+### 📦 Runtime Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+All runtime packages used in this project:
 
-### Deployment
+```json
+"dependencies": {
+  "@reduxjs/toolkit": "^2.8.2",
+  "axios": "^1.9.0",
+  "lucide-react": "^0.514.0",
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-redux": "^9.2.0",
+  "react-scripts": "5.0.1",
+  "tailwindcss": "^3.x"
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+🧠 Developer Notes
 
-### `npm run build` fails to minify
+Codebase is heavily commented with friendly, human-readable explanations for maintainability.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Used **ESLint** and **Prettier** to keep the codebase clean, readable, and consistent across the team.
+
+UX was carefully designed to help users clearly understand skip selection options and restrictions.
+
+All modal dialogs, buttons, and navigation components are fully accessible (keyboard and screen reader compatible).
+
+**localStorage** ensures the selected skip persists on reload, even if the page is refreshed.
+
+---
+
+🔗 External Resources
+
+Skip images and measurements sourced from the official REM Waste site:  
+[https://www.renewableenergymarketing.net/skip-hire/](https://www.renewableenergymarketing.net/skip-hire/)
+
+---
+
+🚀 Final Words
+
+This redesign was crafted with care to elevate the customer experience, modernize the frontend architecture, and make it easier for future teams to collaborate and extend functionality.
+
+If you have any feedback or suggestions, we'd love to hear from you!
