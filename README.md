@@ -5,7 +5,32 @@
 This project is a complete redesign and implementation of the "Choose your skip size" page from REM Waste. The aim was to provide a more modern, responsive, and user-friendly experience by integrating advanced UI/UX techniques, clean state management with Redux, and a cohesive visual theme inspired directly by REM Waste’s brand identity.
 
 ---
+## 🛠️ Getting Started
 
+To run this project locally:
+
+1. Clone the repo
+
+   ```bash
+   git clone https://github.com/SaidiAhmed11/rem-skip-page-redesign.git
+   cd rem-skip-page-redesign
+   ```
+
+2. Install dependencies
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server
+
+   ```bash
+   npm start
+   ```
+
+This will start the app in development mode.  
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 ## 🎨 Design & Visual Approach
 
 I started by analyzing the REM Waste brand and noticed their main color palette included:
