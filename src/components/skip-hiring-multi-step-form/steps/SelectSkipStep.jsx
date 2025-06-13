@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSkips, selectSkip, unselectSkip } from '../../../redux/slices/SkipSlice';
 import { Loader2 } from 'lucide-react';
+import StickySkipBar from '../StickySkipBar';
 
 const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
   };
 
   return (
-    <section className="px-4 py-8 sm:px-8 lg:px-12 max-w-7xl mx-auto">
+    <section className="px-4 mb-40 py-8 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       {/* Step Title */}
       <div className="mb-8 text-center">
         <h2 className="text-3xl font-bold text-gray-100">Choose Your Skip Size</h2>
@@ -77,7 +78,7 @@ const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
               key={skip.id}
               className={`
           group relative overflow-hidden rounded-2xl shadow-md transition hover:shadow-lg
-          ${isSelected ? 'border-4 border-orange-500 bg-orange-50' : 'bg-[#f2f2f2]'}
+          ${isSelected ? 'border-4 border-[#ff8a00] bg-orange-50' : 'bg-[#f2f2f2]'}
           ${isDisabled ? 'opacity-60 pointer-events-none cursor-not-allowed' : ''}
         `}
             >
@@ -159,7 +160,7 @@ const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
               {/* Card body */}
               <div className={`p-5 ${isSelected ? 'text-gray-900' : 'text-zinc-800'}`}>
                 <div className="mb-2">
-                  <span className="bg-orange-400 px-3 py-1.5 text-xs font-medium whitespace-nowrap">
+                  <span className="bg-[#ff8a00] px-3 py-1.5 text-xs font-medium whitespace-nowrap">
                     {skip.size} yards
                   </span>
                 </div>
@@ -198,6 +199,9 @@ const SelectSkipStep = ({ postcode = 'NR32', area = 'Lowestoft' }) => {
           );
         })}
       </div>
+      {selectedSkip !== null && (
+        <StickySkipBar skip={selectedSkip} onBack={() => dispatch(unselectSkip(selectedSkip))} />
+      )}
     </section>
   );
 };

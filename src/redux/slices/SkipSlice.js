@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   skips: [],
-  selectedSkip: {},
+  selectedSkip: null,
   loading: false,
   error: null,
 };
