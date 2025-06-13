@@ -1,9 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const parseJSON = (value) => {
+  try {
+    return value ? JSON.parse(value) : null;
+  } catch (e) {
+    console.error('Parsing error on', value);
+    return null;
+  }
+};
 const initialState = {
   skips: [],
-  selectedSkip: null,
+  selectedSkip: parseJSON(localStorage.getItem('selectedSkip')) || null,
   loading: false,
   error: null,
 };
@@ -34,11 +42,13 @@ const skipSlice = createSlice({
     // Save the skip selected by the user
     selectSkip: (state, action) => {
       state.selectedSkip = action.payload;
+      localStorage.setItem('selectedSkip', JSON.stringify(action.payload));
     },
 
     // Reset the selected skip
     unselectSkip: (state) => {
       state.selectedSkip = null;
+      localStorage.setItem('selectedSkip', null);
     },
 
     // Manually set an error message
