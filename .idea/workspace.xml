@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb047fd3-2af8-403b-8395-11c759a5e1ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/skip-hiring-multi-step-form/SkipInfoModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AllSkipsInfoModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/skip-hiring-multi-step-form/steps/SelectSkipStep.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/skip-hiring-multi-step-form/steps/SelectSkipStep.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +104,7 @@
       <workItem from="1749673096880" duration="9546000" />
       <workItem from="1749736170812" duration="14949000" />
       <workItem from="1749761732983" duration="9524000" />
-      <workItem from="1749822833326" duration="8590000" />
+      <workItem from="1749822833326" duration="10654000" />
     </task>
     <servers />
   </component>
