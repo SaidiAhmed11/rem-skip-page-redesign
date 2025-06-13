@@ -8,19 +8,23 @@ export default function Stepper({ currentStep }) {
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Mobile-only style fix: hardware acceleration triggers flicker fix on Android
-  const mobileFixStyle = isMobile ? { transform: 'translateZ(0)', willChange: 'transform' } : {};
-
   return (
     <div
-      className="flex justify-center px-4 py-6 bg-white dark:bg-black/70 shadow-md rounded-xl w-full min-h-[80px]"
-      style={mobileFixStyle}
+      className={`flex justify-center px-4 py-6 rounded-xl w-full shadow-md max-w-7xl mx-auto
+        ${
+          isMobile
+            ? 'bg-black text-gray-300' // Force desktop dark mode colors on mobile
+            : 'bg-white dark:bg-black text-gray-600 dark:text-gray-300' // Normal desktop light/dark mode
+        }
+      `}
+      style={{ minHeight: '80px' }}
     >
-      <div className="flex items-center w-full max-w-7xl overflow-x-auto md:overflow-visible">
+      <div className="flex items-center w-full overflow-x-auto md:overflow-visible">
         <div className="flex items-center w-full md:justify-between">
           {stepperSteps.map((step, index) => {
             const isActive = index === currentStep;
@@ -43,22 +47,20 @@ export default function Stepper({ currentStep }) {
                         isCompleted
                           ? 'bg-[#ff8a00] text-white'
                           : isActive
-                            ? 'border-2 border-[#ff8a00] text-[#ff8a00] bg-white dark:bg-black'
-                            : 'bg-gray-200 text-gray-400 dark:bg-gray-700'
+                            ? 'border-2 border-[#ff8a00] text-[#ff8a00] bg-black'
+                            : 'bg-gray-700 text-gray-400'
                       }`}
                   >
                     <span className="w-5 h-5 flex items-center justify-center">{step.icon}</span>
                   </div>
-                  <span className="text-xs mt-2 text-gray-600 dark:text-gray-300 whitespace-nowrap">
-                    {step.label}
-                  </span>
+                  <span className="text-xs mt-2 text-gray-300 whitespace-nowrap">{step.label}</span>
                 </div>
 
                 {!isLast && (
                   <div className="flex items-center justify-center flex-1 px-2">
                     <div
                       className={`h-1 w-full transition-all duration-300
-                        ${isCompleted ? 'bg-[#ff8a00]' : 'bg-gray-300 dark:bg-gray-600'}`}
+                        ${isCompleted ? 'bg-[#ff8a00]' : 'bg-gray-600'}`}
                     />
                   </div>
                 )}
