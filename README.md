@@ -1,5 +1,8 @@
 # REM Waste Skip Selection Page — React Redesign
+📦 *Live Demo*: [Click here to try it out](https://rem-skip-page-redesign.vercel.app)  
+🗂️ *GitHub Repo*: [github.com/SaidiAhmed11/rem-skip-page-redesign](https://github.com/SaidiAhmed11/rem-skip-page-redesign)
 
+---
 ## 🎯 Project Overview
 
 This project is a complete redesign and implementation of the "Choose your skip size" page from REM Waste. The aim was to provide a more modern, responsive, and user-friendly experience by integrating advanced UI/UX techniques, clean state management with Redux, and a cohesive visual theme inspired directly by REM Waste’s brand identity.
